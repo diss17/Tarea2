@@ -8,6 +8,51 @@ public class Tarea2 {
     
 }
 
+abstract class Bebida {
+    private int num;
+    public void setSerie(int serie){
+        this.num=serie;
+    }
+    public int getSerie() {
+        return num;
+    }
+    public String Beber() {
+        return "Bebiendo: ";
+    }
+}
+
+
+class Sprite extends Bebida {
+    public Sprite() {
+        super();
+    }
+    @Override
+    public String Beber() {
+        return super.Beber() + "Sprite";
+    }
+
+}
+
+class CocaCola extends Bebida {
+    public CocaCola() {
+        super();
+    }
+    @Override
+    public String Beber() {
+        return super.Beber() + "Cocacola";
+    }
+}
+
+class Fanta extends Bebida {
+    public Fanta() {
+        super();
+    }
+    @Override
+    public String Beber() {
+        return super.Beber() + "Fanta";
+    }
+}
+
 //Esta bien agregar el toString como lo hice en cada clase de tipo Moneda?
 abstract class Moneda {
     public int valor;
@@ -108,4 +153,6 @@ class Moneda100 extends Moneda {
         return "Moneda de $100/n°Serie: "+getSerie();
     }
 }
+
+
 
