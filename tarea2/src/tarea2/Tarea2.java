@@ -196,7 +196,6 @@ class Expendedor {
     private Deposito Sprite;
     private Deposito Fanta;
     private Moneda Pago;
-    
 
     public Expendedor(int numBebidas, int valorBebidas) {
         cantidadBebidas = numBebidas;
@@ -204,56 +203,41 @@ class Expendedor {
         CocaCola = new Deposito();
         Sprite = new Deposito();
         Fanta = new Deposito();
-      
+
         for (int i = 0; i < cantidadBebidas; i++) {
-           Bebida aux_CocaCola= new CocaCola();
-           Bebida aux_Sprite=new Sprite();
-           Bebida aux_Fanta=new Fanta();
-           
-           CocaCola.addBebida(aux_CocaCola);
-           Sprite.addBebida(aux_Sprite);
-           Fanta.addBebida(aux_Fanta);
+            Bebida aux_CocaCola = new CocaCola();
+            Bebida aux_Sprite = new Sprite();
+            Bebida aux_Fanta = new Fanta();
+
+            CocaCola.addBebida(aux_CocaCola);
+            Sprite.addBebida(aux_Sprite);
+            Fanta.addBebida(aux_Fanta);
         }
     }
 
-<<<<<<< HEAD
     public Bebida comprarBebida(Moneda m, int aux_b) {
-        Pago=m;
-        if(m!=null){ //por aqui agregar exception de pago incorrecto
-            if(Pago.getValor()>=precioBebidas){
-                aux_Bebida=Pago.getValor()-precioBebidas;
+        Pago = m;
+        if (m != null) { //por aqui agregar exception de pago incorrecto
+            if (Pago.getValor() >= precioBebidas) {
+                aux_Bebida = Pago.getValor() - precioBebidas;
                 switch (aux_b) {
-=======
-    public Bebida comprarBebida(Moneda m, int cual) {
-        Pago=m;
-        if(m!=null){ //por aqui agregar exception de pago incorrecto
-            if(Pago.getValor()>=precio){
-                cualquiera=Pago.getValor()-precio;
-                switch (cual) {
->>>>>>> 08202dd10ef29a0d3e639a6305b5580a0c9ac561
-                case 1:
-                    return CocaCola.getBebida();
-                case 2:
-                    return Sprite.getBebida();
-                case 3:
-                    return Fanta.getBebida();
-                default:
-                    return null;
+                    case 1:
+                        return CocaCola.getBebida();
+                    case 2:
+                        return Sprite.getBebida();
+                    case 3:
+                        return Fanta.getBebida();
+                    default:
+                        return null;
                 }
-            }else{
-<<<<<<< HEAD
-                aux_Bebida=Pago.getValor();//aqui agregar expection pago insuficiente
+            } else {
+                aux_Bebida = Pago.getValor();//aqui agregar expection pago insuficiente
             }
-        }else{
-            aux_Bebida=0;
-=======
-                cualquiera=Pago.getValor();//aqui agregar expection pago insuficiente
-            }
-        }else{
-            cualquiera=0;
->>>>>>> 08202dd10ef29a0d3e639a6305b5580a0c9ac561
-            return null;
+        } else {
+            aux_Bebida = 0;
+            aux_Bebida = Pago.getValor();//aqui agregar expection pago insuficiente
         }
+
         return null;
     }
 
@@ -262,30 +246,22 @@ class Expendedor {
             Pago = null;
             return Pago;
         } else {
-<<<<<<< HEAD
-            while(aux_Bebida!=0){
-            aux_Bebida = aux_Bebida - 100;
-=======
-            while(cualquiera!=0){
-            cualquiera = cualquiera - 100;
->>>>>>> 08202dd10ef29a0d3e639a6305b5580a0c9ac561
-            return (new Moneda100());
+
+            while (aux_Bebida != 0) {
+                aux_Bebida = aux_Bebida - 100;
+                return (new Moneda100());
             }
         }
     }
 
-    public int vueltito() {
-<<<<<<< HEAD
-        int resp = aux_Bebida;
-=======
-        int resp = cualquiera;
->>>>>>> 08202dd10ef29a0d3e639a6305b5580a0c9ac561
-        return (resp);
+    public int Vuelto() {
+        int vuelto = aux_Bebida;
+        return (vuelto);
     }
 }
 
 
-    /*    public void ValidarBebida() {
+/*    public void ValidarBebida() {
         ControlExceptions h = new ControlExceptions();
         if (cantidad <= 0) {
             try {
@@ -296,28 +272,29 @@ class Expendedor {
         }
     }
 }*/
-    class Deposito {
+class Deposito {
 
-        private ArrayList gaseosa;
+    private ArrayList gaseosa;
 
-        public Deposito() {
-            gaseosa = new ArrayList();
-        }
+    public Deposito() {
+        gaseosa = new ArrayList();
+    }
 
-        public void addBebida(Bebida num) {
-            gaseosa.add(num);
-        }
+    public void addBebida(Bebida num) {
+        gaseosa.add(num);
+    }
 
-        public Bebida getBebida() {
-            if (gaseosa.size() <= 0) {
-                return null;
-            } else {
-                Bebida b = (Bebida) gaseosa.remove(0);
-                return b;
-            }
+    public Bebida getBebida() {
+        if (gaseosa.size() <= 0) {
+            return null;
+        } else {
+            Bebida b = (Bebida) gaseosa.remove(0);
+            return b;
         }
     }
-    class Comprador {
+}
+
+class Comprador {
 
     private int cantidad;
     private String tipoBebida;
@@ -338,6 +315,7 @@ class Expendedor {
         }
 
     }
+
     public int cuantoVuelto() {
         return (cantidad);
     }
@@ -347,20 +325,23 @@ class Expendedor {
     }
 
 }
-    public class NoHayBebidaException extends Exception{
+
+public class NoHayBebidaException extends Exception {
 
     public NoHayBebidaException(String errorMessage) {
         super(errorMessage);
     }
 }
-    public class PagoIncorrectoException extends Exception{
+
+public class PagoIncorrectoException extends Exception {
 
     public PagoIncorrectoException(String errorMessage) {
         super(errorMessage);
 
     }
 }
-    public class PagoInsuficienteException extends Exception{
+
+public class PagoInsuficienteException extends Exception {
 
     public PagoInsuficienteException(String errorMessage) {
         super(errorMessage);
