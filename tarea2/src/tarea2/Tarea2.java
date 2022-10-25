@@ -216,12 +216,21 @@ class Expendedor {
         }
     }
 
+<<<<<<< HEAD
     public Bebida comprarBebida(Moneda m, int aux_b) {
         Pago=m;
         if(m!=null){ //por aqui agregar exception de pago incorrecto
             if(Pago.getValor()>=precioBebidas){
                 aux_Bebida=Pago.getValor()-precioBebidas;
                 switch (aux_b) {
+=======
+    public Bebida comprarBebida(Moneda m, int cual) {
+        Pago=m;
+        if(m!=null){ //por aqui agregar exception de pago incorrecto
+            if(Pago.getValor()>=precio){
+                cualquiera=Pago.getValor()-precio;
+                switch (cual) {
+>>>>>>> 08202dd10ef29a0d3e639a6305b5580a0c9ac561
                 case 1:
                     return CocaCola.getBebida();
                 case 2:
@@ -232,10 +241,17 @@ class Expendedor {
                     return null;
                 }
             }else{
+<<<<<<< HEAD
                 aux_Bebida=Pago.getValor();//aqui agregar expection pago insuficiente
             }
         }else{
             aux_Bebida=0;
+=======
+                cualquiera=Pago.getValor();//aqui agregar expection pago insuficiente
+            }
+        }else{
+            cualquiera=0;
+>>>>>>> 08202dd10ef29a0d3e639a6305b5580a0c9ac561
             return null;
         }
         return null;
@@ -246,15 +262,24 @@ class Expendedor {
             Pago = null;
             return Pago;
         } else {
+<<<<<<< HEAD
             while(aux_Bebida!=0){
             aux_Bebida = aux_Bebida - 100;
+=======
+            while(cualquiera!=0){
+            cualquiera = cualquiera - 100;
+>>>>>>> 08202dd10ef29a0d3e639a6305b5580a0c9ac561
             return (new Moneda100());
             }
         }
     }
 
     public int vueltito() {
+<<<<<<< HEAD
         int resp = aux_Bebida;
+=======
+        int resp = cualquiera;
+>>>>>>> 08202dd10ef29a0d3e639a6305b5580a0c9ac561
         return (resp);
     }
 }
