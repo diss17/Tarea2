@@ -211,12 +211,11 @@ class Expendedor {
     }
 
     public Bebida comprarBebida(Moneda m, int cual) {
-        Pago = m;
-        //Verificar sentencia cuando se intente comprar con una moneda de tipo null
-        //(Pago incorrecto exception)
-        if (Pago.getValor() > precio) {
-            cualquiera = Pago.getValor() - precio;
-            switch (cual) {
+        Pago=m;
+        if(m!=null){ //por aqui agregar exception de pago incorrecto
+            if(Pago.getValor()>=precio){
+                cualquiera=Pago.getValor()-precio;
+                switch (cual) {
                 case 1:
                     return coca.getBebida();
                 case 2:
@@ -225,10 +224,15 @@ class Expendedor {
                     return fanta.getBebida();
                 default:
                     return null;
+                }
+            }else{
+                cualquiera=Pago.getValor();//aqui agregar expection pago insuficiente
             }
-        } else {
+        }else{
+            cualquiera=0;
             return null;
         }
+        return null;
     }
 
     public Moneda getVuelto() {
@@ -236,15 +240,19 @@ class Expendedor {
             Pago = null;
             return Pago;
         } else {
+            while(cualquiera!=0){
             cualquiera = cualquiera - 100;
             return (new Moneda100());
+            }
         }
     }
 
     public int vueltito() {
-        int resp = Pago.getValor() - precio;
+        int resp = cualquiera;
         return (resp);
     }
+}
+
 
     /*    public void ValidarBebida() {
         ControlExceptions h = new ControlExceptions();
