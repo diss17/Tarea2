@@ -189,62 +189,76 @@ class Moneda100 extends Moneda {
 
 class Expendedor {
 
-    private int cantidad;
-    private int precio;
-    private int cualquiera;
-    private Deposito coca;
-    private Deposito sprite;
-    private Deposito fanta;
+    private int cantidadBebidas;
+    private int precioBebidas;
+    private int aux_Bebida;
+    private Deposito CocaCola;
+    private Deposito Sprite;
+    private Deposito Fanta;
     private Moneda Pago;
+    
 
-    public Expendedor(int numBebidas, int precioBebidas) {
-        cantidad = numBebidas;
-        precio = precioBebidas;
-        coca = new Deposito();
-        sprite = new Deposito();
-        fanta = new Deposito();
-        for (int i = 0; i < cantidad; i++) {
-            coca.addBebida(new CocaCola(i + 100));
-            sprite.addBebida(new Sprite(i + 200));
-            fanta.addBebida(new Fanta(i + 300));
+    public Expendedor(int numBebidas, int valorBebidas) {
+        cantidadBebidas = numBebidas;
+        precioBebidas = valorBebidas;
+        CocaCola = new Deposito();
+        Sprite = new Deposito();
+        Fanta = new Deposito();
+      
+        for (int i = 0; i < cantidadBebidas; i++) {
+           Bebida aux_CocaCola= new CocaCola();
+           Bebida aux_Sprite=new Sprite();
+           Bebida aux_Fanta=new Fanta();
+           
+           CocaCola.addBebida(aux_CocaCola);
+           Sprite.addBebida(aux_Sprite);
+           Fanta.addBebida(aux_Fanta);
         }
     }
 
-    public Bebida comprarBebida(Moneda m, int cual) {
-        Pago = m;
-        //Verificar sentencia cuando se intente comprar con una moneda de tipo null
-        //(Pago incorrecto exception)
-        if (Pago.getValor() > precio) {
-            cualquiera = Pago.getValor() - precio;
-            switch (cual) {
+    public Bebida comprarBebida(Moneda m, int aux_b) {
+        Pago=m;
+        if(m!=null){ //por aqui agregar exception de pago incorrecto
+            if(Pago.getValor()>=precioBebidas){
+                aux_Bebida=Pago.getValor()-precioBebidas;
+                switch (aux_b) {
                 case 1:
-                    return coca.getBebida();
+                    return CocaCola.getBebida();
                 case 2:
-                    return sprite.getBebida();
+                    return Sprite.getBebida();
                 case 3:
-                    return fanta.getBebida();
+                    return Fanta.getBebida();
                 default:
                     return null;
+                }
+            }else{
+                aux_Bebida=Pago.getValor();//aqui agregar expection pago insuficiente
             }
-        } else {
+        }else{
+            aux_Bebida=0;
             return null;
         }
+        return null;
     }
 
     public Moneda getVuelto() {
-        if (cualquiera == 0) {
+        if (aux_Bebida == 0) {
             Pago = null;
             return Pago;
         } else {
-            cualquiera = cualquiera - 100;
+            while(aux_Bebida!=0){
+            aux_Bebida = aux_Bebida - 100;
             return (new Moneda100());
+            }
         }
     }
 
     public int vueltito() {
-        int resp = Pago.getValor() - precio;
+        int resp = aux_Bebida;
         return (resp);
     }
+}
+
 
     /*    public void ValidarBebida() {
         ControlExceptions h = new ControlExceptions();
@@ -328,4 +342,3 @@ class Expendedor {
 
     }
 }
-
