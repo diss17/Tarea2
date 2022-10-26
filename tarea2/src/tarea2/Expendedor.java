@@ -8,6 +8,7 @@ class Expendedor {
     private Deposito CocaCola;
     private Deposito Sprite;
     private Deposito Fanta;
+    private Deposito coins;
     private Moneda Pago;
     private Bebida gaseosa;
 
@@ -17,6 +18,7 @@ class Expendedor {
         CocaCola = new Deposito();
         Sprite = new Deposito();
         Fanta = new Deposito();
+        coins = new Deposito();
 
         for (int i = 0; i < cantidadBebidas; i++) {
             CocaCola.addBebida(new CocaCola(i+100));
@@ -29,6 +31,9 @@ class Expendedor {
         Pago = m;
         if (Pago != null) {
             if (Pago.getValor() >= precioBebidas) {
+                for(int i=0;i<Pago.getValor();i=i+100){
+                    coins.addMoneda(new Moneda100());
+                }
                 aux_Bebida = Pago.getValor() - precioBebidas;
                 switch (aux_b) {
                     case 1:
@@ -70,15 +75,18 @@ class Expendedor {
     }
 
     public Moneda getVuelto() {
+        Moneda ayuda;
+        int ayuda2=aux_Bebida;
         if (aux_Bebida == 0) {
             Pago = null;
-            return Pago;
-        } else {
-
-            while (aux_Bebida != 0) {
-                aux_Bebida = aux_Bebida - 100;
+            ayuda=new Moneda0();
+            return ayuda;
+        }else{
+            aux_Bebida=aux_Bebida-100;
+            for(int i=0;i<ayuda2;i=i+100){
+            return coins.getMoneda();
             }
-            return (new Moneda100());
+            return Pago;
         }
     }
 

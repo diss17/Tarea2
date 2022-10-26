@@ -34,6 +34,20 @@ public class Tarea2 {
         System.out.println("Vuelto: " + y.cuantoVuelto());
         System.out.println(y.queBebiste());
         System.out.println();
+        
+        //Test Expendedor para ver si tiramonedas
+        Expendedor v2 = new Expendedor(1,800);
+        Moneda b2 = new Moneda1000();
+        Comprador y2= new Comprador(b2,1,v2);
+        System.out.println("Vuelto: " + y2.cuantoVuelto());
+        System.out.println(y2.queBebiste());
+        Moneda mon1=v2.getVuelto();
+        Moneda mon2=v2.getVuelto();
+        Moneda mon3=v2.getVuelto();
+        System.out.println(mon1.getValor());
+        System.out.println(mon2.getValor());
+        System.out.println(mon3.getValor());
+        System.out.println();
     }
 
 }
