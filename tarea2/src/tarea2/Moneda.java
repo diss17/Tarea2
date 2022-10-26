@@ -113,3 +113,15 @@ class Moneda100 extends Moneda {
         return "Moneda de $100\n Serie: " + getSerie();
     }
 }
+class Moneda0 extends Moneda{
+    public Moneda0() {
+        super();
+    }
+
+    @Override
+    public int getValor() {
+        valor = 0;
+        return super.getValor();
+    }
+
+}
