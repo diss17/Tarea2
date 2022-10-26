@@ -9,6 +9,7 @@ class Expendedor {
     private Deposito Sprite;
     private Deposito Fanta;
     private Moneda Pago;
+    private Bebida gaseosa;
 
     public Expendedor(int numBebidas, int valorBebidas) {
         cantidadBebidas = numBebidas;
@@ -18,9 +19,9 @@ class Expendedor {
         Fanta = new Deposito();
 
         for (int i = 0; i < cantidadBebidas; i++) {
-            CocaCola.addBebida(new CocaCola(i));
-            Sprite.addBebida(new Sprite(i));
-            Fanta.addBebida(new Fanta(i));
+            CocaCola.addBebida(new CocaCola(i+100));
+            Sprite.addBebida(new Sprite(i+200));
+            Fanta.addBebida(new Fanta(i+300));
         }
     }
 
@@ -31,26 +32,28 @@ class Expendedor {
                 aux_Bebida = Pago.getValor() - precioBebidas;
                 switch (aux_b) {
                     case 1:
-                        if (CocaCola.getBebida() == null) {
+                        Bebida aux2=CocaCola.getBebida();
+                        if (aux2 == null) {
                             aux_Bebida = Pago.getValor();
                             throw new NoHayBebidaException("No hay bebidas disponibles");
                         } else {
-                            
-                            return CocaCola.getBebida();
+                            return aux2;
                         }
                     case 2:
-                        if (Sprite.getBebida() == null) {
+                        Bebida aux3=Sprite.getBebida();
+                        if (aux3 == null) {
                             aux_Bebida = Pago.getValor();
                             throw new NoHayBebidaException("No hay bebidas disponibles");
                         } else {
-                            return CocaCola.getBebida();
+                            return aux3;
                         }
                     case 3:
+                        Bebida aux4=Fanta.getBebida();
                         if (Fanta.getBebida() == null) {
                             aux_Bebida = Pago.getValor();
                             throw new NoHayBebidaException("No hay bebidas disponibles");
                         } else {
-                            return CocaCola.getBebida();
+                            return aux4;
                         }
                     default:
                         return null;
