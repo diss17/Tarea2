@@ -1,6 +1,5 @@
 package tarea2;
 
-//Esta bien agregar el toString como lo hice en cada clase de tipo Moneda?
 abstract class Moneda {
 
     public int valor;
@@ -39,7 +38,7 @@ class Moneda1500 extends Moneda {
 
     @Override
     public String toString() {
-        return "Moneda de $1500/n°Serie: " + getSerie();
+        return "Moneda de $1500 \n Serie: " + getSerie();
     }
 }
 
@@ -63,7 +62,7 @@ class Moneda1000 extends Moneda {
 
     @Override
     public String toString() {
-        return "Moneda de $1000/n°Serie: " + getSerie();
+        return "Moneda de $1000 \n Serie: " + getSerie();
     }
 }
 
@@ -87,7 +86,7 @@ class Moneda500 extends Moneda {
 
     @Override
     public String toString() {
-        return "Moneda de $500/n°Serie: " + getSerie();
+        return "Moneda de $500\n Serie: " + getSerie();
     }
 }
 
@@ -111,6 +110,6 @@ class Moneda100 extends Moneda {
 
     @Override
     public String toString() {
-        return "Moneda de $100/n°Serie: " + getSerie();
+        return "Moneda de $100\n Serie: " + getSerie();
     }
 }
