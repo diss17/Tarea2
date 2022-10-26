@@ -49,14 +49,16 @@ class Expendedor {
                         }
                     case 3:
                         Bebida aux4=Fanta.getBebida();
-                        if (Fanta.getBebida() == null) {
+                        if (aux4 == null) {
                             aux_Bebida = Pago.getValor();
                             throw new NoHayBebidaException("No hay bebidas disponibles");
                         } else {
                             return aux4;
                         }
                     default:
-                        return null;
+                        aux_Bebida=Pago.getValor();
+                        throw new NoHayBebidaException("Elección de bebida inválida");
+                        
                 }
             } else {
                 aux_Bebida = Pago.getValor();
