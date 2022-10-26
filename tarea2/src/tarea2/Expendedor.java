@@ -18,35 +18,50 @@ class Expendedor {
         Fanta = new Deposito();
 
         for (int i = 0; i < cantidadBebidas; i++) {
-            CocaCola.addBebida(new CocaCola(i + 100));
-            Sprite.addBebida(new Sprite(i + 200));
-            Fanta.addBebida(new Fanta(i + 300));
+            CocaCola.addBebida(new CocaCola(i));
+            Sprite.addBebida(new Sprite(i));
+            Fanta.addBebida(new Fanta(i));
         }
     }
 
-    public Bebida comprarBebida(Moneda m, int aux_b) {
+    public Bebida comprarBebida(Moneda m, int aux_b) throws PagoIncorrectoException, PagoInsuficienteException, NoHayBebidaException {
         Pago = m;
         if (Pago != null) {
             if (Pago.getValor() >= precioBebidas) {
                 aux_Bebida = Pago.getValor() - precioBebidas;
                 switch (aux_b) {
                     case 1:
-                        return CocaCola.getBebida();
+                        if (CocaCola.getBebida() == null) {
+                            aux_Bebida = Pago.getValor();
+                            throw new NoHayBebidaException("No hay bebidas disponibles");
+                        } else {
+                            
+                            return CocaCola.getBebida();
+                        }
                     case 2:
-                        return Sprite.getBebida();
+                        if (Sprite.getBebida() == null) {
+                            aux_Bebida = Pago.getValor();
+                            throw new NoHayBebidaException("No hay bebidas disponibles");
+                        } else {
+                            return CocaCola.getBebida();
+                        }
                     case 3:
-                        return Fanta.getBebida();
+                        if (Fanta.getBebida() == null) {
+                            aux_Bebida = Pago.getValor();
+                            throw new NoHayBebidaException("No hay bebidas disponibles");
+                        } else {
+                            return CocaCola.getBebida();
+                        }
                     default:
                         return null;
                 }
             } else {
                 aux_Bebida = Pago.getValor();
+                throw new PagoInsuficienteException("Pago Insuficiente");
             }
         } else {
-            aux_Bebida = 0;
-            return null;
+            throw new PagoIncorrectoException("Metodo pago invalido");
         }
-        return null;
     }
 
     public Moneda getVuelto() {
@@ -67,14 +82,4 @@ class Expendedor {
         return (vuelto);
     }
 
-    public void ValidarBebida() {
-        ControlExceptions h = new ControlExceptions();
-        if (cantidadBebidas <= 0) {
-            try {
-                h.validarBebida();
-            } catch (NoHayBebidaException b) {
-                System.out.println("Error: " + b.getMessage());
-            }
-        }
-    }
 }

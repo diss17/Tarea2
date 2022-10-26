@@ -10,16 +10,8 @@ abstract class Moneda {
         super();
     }
 
-    public void setSerie(String serie) {
-        this.serie = serie;
-    }
-
     public String getSerie() {
-        return "Moneda de " + serie;
-    }
-
-    public void setValor(int valor) {
-        this.valor = valor;
+        return "Moneda de ";
     }
 
     public int getValor() {

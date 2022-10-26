@@ -22,7 +22,4 @@ class Deposito {
             return a;
         }
     }
-    public int getSize(){
-        return b.size();
-    }
 }
