@@ -17,8 +17,9 @@ abstract class Moneda {
         return valor;
     }
 }
-
+//Clases de los distintos tipos de monedas que heredan las propiedades de la clase Moneda
 //Clase moneda de 1500.
+
 class Moneda1500 extends Moneda {
 
     public Moneda1500() {
@@ -113,7 +114,9 @@ class Moneda100 extends Moneda {
         return "Moneda de $100\n Serie: " + getSerie();
     }
 }
-class Moneda0 extends Moneda{
+
+class Moneda0 extends Moneda {
+
     public Moneda0() {
         super();
     }

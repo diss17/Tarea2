@@ -3,7 +3,7 @@ package tarea2;
 import java.util.ArrayList;
 
 class Deposito {
-
+    //Arraylist que se encargan de añadir o quitar elementos tipo moneda o bebida segun corresponda
     private ArrayList b;
     private ArrayList m;
 
@@ -24,12 +24,12 @@ class Deposito {
             return a;
         }
     }
-    
-    public void addMoneda(Moneda x){
+
+    public void addMoneda(Moneda x) {
         m.add(x);
     }
-    
-    public Moneda getMoneda(){
+
+    public Moneda getMoneda() {
         if (m.size() <= 0) {
             return null;
         } else {

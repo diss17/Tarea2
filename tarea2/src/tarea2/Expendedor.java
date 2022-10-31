@@ -19,11 +19,12 @@ class Expendedor {
         Sprite = new Deposito();
         Fanta = new Deposito();
         coins = new Deposito();
-
+        //Creacion de bebidas dependiendo de la cantidad establecida 
+        //mediante un ciclo que les asigna un numero de serie
         for (int i = 0; i < cantidadBebidas; i++) {
-            CocaCola.addBebida(new CocaCola(i+100));
-            Sprite.addBebida(new Sprite(i+200));
-            Fanta.addBebida(new Fanta(i+300));
+            CocaCola.addBebida(new CocaCola(i + 100));
+            Sprite.addBebida(new Sprite(i + 200));
+            Fanta.addBebida(new Fanta(i + 300));
         }
     }
 
@@ -31,13 +32,15 @@ class Expendedor {
         Pago = m;
         if (Pago != null) {
             if (Pago.getValor() >= precioBebidas) {
-                for(int i=0;i<Pago.getValor();i=i+100){
+                for (int i = 0; i < Pago.getValor(); i = i + 100) {
                     coins.addMoneda(new Moneda100());
                 }
                 aux_Bebida = Pago.getValor() - precioBebidas;
                 switch (aux_b) {
                     case 1:
-                        Bebida aux2=CocaCola.getBebida();
+                        //Cada intento de comprar una bebida pasara por este switch case el cual se encarga de verificar el tipo de bebida
+                        //y ver si se encuentra disponible, sino para segun el caso lanzar un tipo de Exception con sus respectivos Output's
+                        Bebida aux2 = CocaCola.getBebida();
                         if (aux2 == null) {
                             aux_Bebida = Pago.getValor();
                             throw new NoHayBebidaException("No hay bebidas disponibles");
@@ -45,7 +48,7 @@ class Expendedor {
                             return aux2;
                         }
                     case 2:
-                        Bebida aux3=Sprite.getBebida();
+                        Bebida aux3 = Sprite.getBebida();
                         if (aux3 == null) {
                             aux_Bebida = Pago.getValor();
                             throw new NoHayBebidaException("No hay bebidas disponibles");
@@ -53,7 +56,7 @@ class Expendedor {
                             return aux3;
                         }
                     case 3:
-                        Bebida aux4=Fanta.getBebida();
+                        Bebida aux4 = Fanta.getBebida();
                         if (aux4 == null) {
                             aux_Bebida = Pago.getValor();
                             throw new NoHayBebidaException("No hay bebidas disponibles");
@@ -61,30 +64,36 @@ class Expendedor {
                             return aux4;
                         }
                     default:
-                        aux_Bebida=Pago.getValor();
+                        //Si la eleccion del Comprador se sale de los margenes establecida
+                        //Devuelve la moneda utilizada como tal
+                        aux_Bebida = Pago.getValor();
                         throw new NoHayBebidaException("Elección de bebida inválida");
-                        
+
                 }
             } else {
+                //Si la moneda utilizada para realizar el pago es inferior al precio de la bebida
+                //Devuelve la moneda utilizada como tal
                 aux_Bebida = Pago.getValor();
                 throw new PagoInsuficienteException("Pago Insuficiente");
             }
         } else {
+            //Si la moneda utilizada es de tipo null
             throw new PagoIncorrectoException("Metodo pago invalido");
         }
     }
 
     public Moneda getVuelto() {
+        //Sistema que devuelve el vuelto en monedas de tipo 100
         Moneda ayuda;
-        int ayuda2=aux_Bebida;
+        int ayuda2 = aux_Bebida;
         if (aux_Bebida == 0) {
             Pago = null;
-            ayuda=new Moneda0();
+            ayuda = new Moneda0();
             return ayuda;
-        }else{
-            aux_Bebida=aux_Bebida-100;
-            for(int i=0;i<ayuda2;i=i+100){
-            return coins.getMoneda();
+        } else {
+            aux_Bebida = aux_Bebida - 100;
+            for (int i = 0; i < ayuda2; i = i + 100) {
+                return coins.getMoneda();
             }
             return Pago;
         }

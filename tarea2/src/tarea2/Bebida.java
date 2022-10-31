@@ -7,7 +7,7 @@ abstract class Bebida {
     public Bebida(int serie) {
         this.num = serie;
     }
-
+ //getter Serie de bebida
     public int getSerie() {
         return num;
     }
@@ -16,7 +16,7 @@ abstract class Bebida {
         return "Bebiendo: ";
     }
 }
-
+//Clases para diferenciar los tipos de Bebiba que heredan las propiedades de la clase Bebida
 class Sprite extends Bebida {
 
     public Sprite(int s) {
